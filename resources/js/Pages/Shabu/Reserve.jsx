@@ -3,10 +3,10 @@ import { usePage, Head, router } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Card, CardContent } from "../../components/ui/card";
 import { Button } from "../../components/ui/button";
+import { Link } from "@inertiajs/react";
 
 export default function Reserve() {
     const { tables } = usePage().props;
-
     const handleReserve = (table) => {
         if (table.available) {
             window.location.href = `/create?table_id=${table.id}`;
@@ -55,6 +55,12 @@ export default function Reserve() {
                                     >
                                         {table.available ? "จองโต๊ะ" : "ถูกจองแล้ว"}
                                     </Button>
+                                    <Link
+                                        href={`/reserve/${table.id}`}
+                                        className="text-sm text-blue-600 hover:text-blue-700 mt-2"
+                                    >
+                                        ดูรายละเอียด
+                                    </Link>
 
                                 </CardContent>
                             </Card>

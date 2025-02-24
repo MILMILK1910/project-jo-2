@@ -9,10 +9,11 @@ class Tables extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'available', 'reserved_by_user_id'];
+    protected $fillable = ['seat', 'available'];
 
-    public function user()
+    public function reservations()
     {
-        return $this->belongsTo(User::class, 'reserved_by_user_id');
+        return $this->hasMany(Reservations::class, 'table_id');
     }
 }
+

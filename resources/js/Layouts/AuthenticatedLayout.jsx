@@ -80,6 +80,13 @@ export default function AuthenticatedLayout({ header, children }) {
                                         >
                                             Log Out
                                         </Dropdown.Link>
+                                        <Dropdown.Link
+                                            href={route('admin.panel')}
+                                            method="post"
+                                            as="button"
+                                        >
+                                            Admin Account
+                                        </Dropdown.Link>
                                     </Dropdown.Content>
                                 </Dropdown>
                             </div>

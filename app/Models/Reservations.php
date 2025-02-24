@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Log;
 
 class Reservations extends Model
 {
@@ -17,13 +19,13 @@ class Reservations extends Model
         'table_id',
         'reserved_at',
         'expires_at',
+        'number_of_guests'
     ];
+
     public function table()
     {
-        return $this->belongsTo(Table::class);
+        return $this->belongsTo(Tables::class, 'table_id');
     }
-    public function reservation()
-    {
-        return $this->hasOne(Reservations::class);
-    }
+
+
 }

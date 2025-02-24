@@ -7,6 +7,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\AdminController;
+use App\Http\Middleware\AdminMiddleware;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -35,8 +37,17 @@ Route::middleware('auth')->group(function () {
     // หน้าสร้างการจอง
     Route::get('/create', [CreateController::class, 'showCreateForm'])->name('create');
 
+    Route::get('/{id}', [ReservationsController::class, 'show'])->name('show');
+    Route::delete('/{id}', [ReservationsController::class, 'delete'])->name('destroy');
     // API สำหรับการจอง
     Route::post('/reserve-table', [ReservationsController::class, 'reserveTable']);
+});
+
+Route::middleware(['auth', AdminMiddleware::class])->group(function () {
+    Route::get('/admin/panel', [AdminController::class, 'index'])->name('admin.panel');
+    Route::delete('/admin/delete/{id}', [AdminController::class, 'deleteReservation'])->name('admin.delete');
+    Route::get('/admin/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
+    Route::post('/admin/update/{id}', [AdminController::class, 'update'])->name('admin.update');
 });
 
 require __DIR__.'/auth.php';
