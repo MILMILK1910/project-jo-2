@@ -85,7 +85,7 @@ export default function Dashboard() {
                                 </div >
                                 <div className="flex justify-center mt-10">
                                     <Link
-                                        href={route('create')}
+                                        href={route('reserve.index')}
                                         className="px-6 py-3 bg-red-900 text-white font-bold rounded-lg shadow-md hover:bg-red-600 transition"
                                     >
                                         จองโต๊ะเลย!

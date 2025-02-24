@@ -37,8 +37,6 @@ Route::middleware('auth')->group(function () {
     // หน้าสร้างการจอง
     Route::get('/create', [CreateController::class, 'showCreateForm'])->name('create');
 
-    Route::get('/{id}', [ReservationsController::class, 'show'])->name('show');
-    Route::delete('/{id}', [ReservationsController::class, 'delete'])->name('destroy');
     // API สำหรับการจอง
     Route::post('/reserve-table', [ReservationsController::class, 'reserveTable']);
 });
